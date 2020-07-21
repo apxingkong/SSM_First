@@ -1,0 +1,4 @@
+com\xing\service\UserService.class
+com\xing\dao\USerDaoImpl.class
+com\xing\dao\UserDao.class
+com\xing\service\UserServiceImpl.class
