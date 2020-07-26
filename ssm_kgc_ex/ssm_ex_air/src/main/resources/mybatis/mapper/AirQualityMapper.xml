@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.air.mapper.AirQualityMapper">
+    <select id="queryAllAirQuality" resultType="com.kgc.air.beans.AirQuality">
+        select a.id,a.districtId,d.name districtName,a.monitorTime,a.pm10,a.pm25,a.monitoringStation,a.lastModifyTime
+        from air_quality_index a,district d
+        where a.districtId = d.id
+        <if test="districtId !=null and districtId != 0">
+            and a.districtId = #{districtId}
+        </if>
+        order by a.monitorTime desc
+    </select>
+
+    <select id="queryAirQualityById" resultType="com.kgc.air.beans.AirQuality">
+        select a.id,a.districtId,d.name districtName,a.monitorTime,a.pm10,a.pm25,a.monitoringStation,a.lastModifyTime
+        from air_quality_index a,district d
+        where a.id = #{id} and a.districtId = d.id
+    </select>
+
+    <update id="updateAirQuality" parameterType="com.kgc.air.beans.AirQuality">
+        update air_quality_index
+        set districtId = #{districtId},monitorTime = #{monitorTime},pm10 = #{pm10},pm25 = #{pm25},monitoringStation = #{monitoringStation},lastModifyTime = #{lastModifyTime}
+        where id = #{id}
+    </update>
+
+    <insert id="addAirQuality" parameterType="com.kgc.air.beans.AirQuality">
+        insert into air_quality_index (districtId, monitorTime, pm10,pm25,monitoringStation,lastModifyTime)
+        values (#{districtId},#{monitorTime},#{pm10},#{pm25},#{monitoringStation},#{lastModifyTime});
+    </insert>
+
+    <insert id="addAirQuality2" parameterType="com.kgc.air.beans.AirQuality">
+        insert into air_quality_index
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="districtId != null">
+                districtId,
+            </if>
+            <if test="monitorTime != null">
+                monitorTime,
+            </if>
+            <if test="pm10 != null">
+                pm10,
+            </if>
+            <if test="pm25 != null">
+                pm25,
+            </if>
+            <if test="monitoringStation != null">
+                monitoringStation,
+            </if>
+                lastModifyTime,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="districtId != null">
+                #{districtId},
+            </if>
+            <if test="monitorTime != null">
+                #{monitorTime},
+            </if>
+            <if test="pm10 != null">
+                #{pm10},
+            </if>
+            <if test="pm25 != null">
+                #{pm25},
+            </if>
+            <if test="monitoringStation != null">
+                #{monitoringStation},
+            </if>
+                now(),
+        </trim>
+
+    </insert>
+
+    <delete id="delAirQuality">
+        delete from air_quality_index
+        where id = #{id}
+    </delete>
+
+    <select id="getToalCount" resultType="int">
+        select count(1) from air_quality_index
+    </select>
+
+    <select id="getAirQualityListPage" resultType="com.kgc.air.beans.AirQuality">
+        select a.id,a.districtId,d.name districtName,a.monitorTime,a.pm10,a.pm25,a.monitoringStation,a.lastModifyTime
+        from air_quality_index a,district d
+        where a.districtId = d.id
+        order by a.monitorTime desc
+        limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="queryAirQualityList2" resultType="com.kgc.air.beans.AirQuality">
+        select a.id,a.districtId,d.name districtName,a.monitorTime,a.pm10,a.pm25,a.monitoringStation,a.lastModifyTime
+        from air_quality_index a,district d
+        where a.districtId = d.id
+        <if test="DisId !=null and DisId != 0">
+            and a.districtId = #{DisId}
+        </if>
+        order by a.monitorTime desc
+        limit #{pageNo},#{pageSize}
+    </select>
+</mapper>

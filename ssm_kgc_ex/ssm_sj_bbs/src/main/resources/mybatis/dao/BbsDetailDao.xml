@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.bbs.dao.BbsDetailDao">
+
+    <select id="queryBbsDetails" resultType="com.kgc.bbs.beans.BbsDetail">
+        select a.id,a.sortId,b.name sortName,a.title,a.detail,a.author,a.createDate,a.replyCount
+        from bbs_detail a,bbs_sort b
+        where a.sortId = b.id
+        <if test="sortId != null and sortId != 0">
+            and a.sortId = #{sortId}
+        </if>
+        order by a.id desc
+    </select>
+
+    <update id="updateBbsDetail" parameterType="com.kgc.bbs.beans.BbsDetail">
+        update bbs_detail
+        set sortId=#{sortId},title=#{title},detail=#{detail},author=#{author},createDate=now()
+        where id=#{id}
+    </update>
+    <!--int addBbsDetail(BbsDetail bbsDetail);-->
+    <insert id="addBbsDetail" parameterType="com.kgc.bbs.beans.BbsDetail">
+        insert into bbs_detail (sortId,title,detail,author,createDate)
+        values (#{sortId},#{title},#{detail},#{author},now());
+    </insert>
+
+
+</mapper>
