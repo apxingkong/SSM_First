@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://pics.images.ac.cn/image/5f1008907e854.html" type="image/x-icon"/>
+    <title>如何在左侧显示大图，在右侧显示几张小图片作为预览</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+    <script src="../../static/js/jquery-3.5.1.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .hides{
+            display: inline-block;
+            width: 500px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".hides").hide();
+            $(".imagess").hover(function () {
+                $(".hides").show();
+            }, function () {
+                $(".hides").hide();
+            });
+        })
+    </script>
+</head>
+<body>
+    <img class="imagess" src="../img/tumo.png" width="500" alt="">
+    <div class="hides"><img src="../img/tumo.png" alt=""></div>
+</body>
+</html>

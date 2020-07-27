@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>列表页</title>
-    <link rel="shortcut icon" href="https://pics.images.ac.cn/image/5f1008907e854.html" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://i.postimg.cc/28ByBG6h/logo1ico.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" />
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
@@ -90,7 +90,7 @@
                         <tr style="text-align: center">
                             <td>${air.id}</td>
                             <td>${air.districtName}</td>
-                            <td>${air.monitorTime}</td>
+                            <td>${air.moniTime}</td>
                             <td>${air.pm10}</td>
                             <td>${air.pm25}</td>
                             <td>${air.monitoringStation}</td>

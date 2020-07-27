@@ -3,13 +3,30 @@
 <html>
 <head>
     <title>添加页面</title>
-    <link rel="shortcut icon" href="https://pics.images.ac.cn/image/5f1008907e854.html" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://i.postimg.cc/28ByBG6h/logo1ico.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/xingkong.css"/>
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function () {
+            $("#title").blur(function () {
+                var title = $("#title").val();
+                $.ajax({
+                   url: "addTitle" ,
+                    type: "post",
+                    data: $("form").serialize(),
+                    datatype: "json",
+                    success: function (data) {
+                        if (data){
+                            console.log('标题可以添加');
+                        }else {
+                            alert("标题已存在！");
+                            $("#title").val("");
+                        }
+                    }
+                });
+            });
             $("form").submit(function () {
                 $.ajax({
                     url:"addBbsDetail",

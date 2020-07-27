@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.book.dao.BookInfoDao">
+    <select id="queryBookList" resultType="com.kgc.book.beans.BookInfo">
+        select a.book_id,a.book_code,a.book_name,d.type_name bookTypename,a.book_author,a.publish_press,a.is_borrow
+        from book_info a,book_type d
+        where a.book_type = d.id
+        <if test="bookType !=null and bookType != 0">
+            and a.book_type = #{bookType}
+        </if>
+        <if test="bookName !=null and ''!=bookName">
+            and a.book_name like concat('%',#{bookName},'%')
+        </if>
+        <if test="isBorrow !=null and isBorrow != 10">
+            and a.is_borrow = #{isBorrow}
+        </if>
+    </select>
+
+    <update id="borrowBook">
+        update book_info
+        set is_borrow = 1
+        where book_id = #{bookId}
+    </update>
+
+    <select id="getToalCount" resultType="int">
+        select count(1) from book_info
+    </select>
+
+    <select id="queryBookList2" resultType="com.kgc.book.beans.BookInfo">
+        select a.book_id,a.book_code,a.book_name,d.type_name bookTypename,a.book_author,a.publish_press,a.is_borrow
+        from book_info a,book_type d
+        where a.book_type = d.id
+        <if test="bookType !=null and bookType != 0">
+            and a.book_type = #{bookType}
+        </if>
+        <if test="bookName !=null and ''!=bookName">
+            and a.book_name like concat('%',#{bookName},'%')
+        </if>
+        <if test="isBorrow !=null and isBorrow != 10">
+            and a.is_borrow = #{isBorrow}
+        </if>
+        order by a.book_id asc
+        limit #{pageNos},#{pageSize}
+    </select>
+</mapper>

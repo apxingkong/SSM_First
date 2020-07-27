@@ -1,7 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>首页</title>
-    <link rel="shortcut icon" href="https://pics.images.ac.cn/image/5f1008907e854.html" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://i.postimg.cc/28ByBG6h/logo1ico.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/xingkong.css"/>
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min.js"></script>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.book.dao.UserDao">
+    <select id="queryUSer" resultType="int">
+        select count(1) from book_users
+        where user_code = #{userCode} and password = #{password}
+    </select>
+    <insert id="addUser">
+        insert into book_users (user_code,password,email,gender)
+        values (#{userCode},#{password},#{email},#{gender})
+    </insert>
+</mapper>

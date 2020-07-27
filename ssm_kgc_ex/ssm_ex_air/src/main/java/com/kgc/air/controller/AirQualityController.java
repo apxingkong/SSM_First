@@ -106,11 +106,11 @@ public class AirQualityController {
     @ResponseBody
     @RequestMapping(value = "/updateAirQuality2",method = RequestMethod.POST)
     public boolean updateAirQuality2(AirQuality airQuality,HttpServletRequest request) throws ParseException {
-        String moniTime = request.getParameter("monitorTime1");
-        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(moniTime);
+        String monTime = request.getParameter("monitorTime1");
+        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(monTime);
         airQuality.setMonitorTime(date1);
-        String moningTime = request.getParameter("lastModifyTime1");
-        Date date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(moningTime);
+        String moNTime = request.getParameter("lastModifyTime1");
+        Date date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(moNTime);
         airQuality.setLastModifyTime(date2);
         System.err.println("更新操作啊："+airQuality);
         //更新
@@ -238,6 +238,10 @@ public class AirQualityController {
         String districtId = request.getParameter("districtId") == null ? "0" : request.getParameter("districtId");
         //获取对应区域的所有数据列表
         List<AirQuality> airQualities = airQualityService.queryAirQualityList2(Integer.valueOf(districtId),(pageNos-1)*pageSize,pageSize);
+        for (AirQuality airQuality : airQualities) {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+            airQuality.setMoniTime(fmt.format(airQuality.getMonitorTime()));
+        }
         model.addAttribute("airQualities", airQualities);
         return "airQualityList";
     }

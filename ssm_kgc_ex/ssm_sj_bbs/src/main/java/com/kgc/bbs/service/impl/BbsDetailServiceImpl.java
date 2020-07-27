@@ -22,6 +22,11 @@ public class BbsDetailServiceImpl implements BbsDetailService {
     }
 
     @Override
+    public List<BbsDetail> querySortByBbsId(Integer bbsId) {
+        return bbsDetailDao.querySortByBbsId(bbsId);
+    }
+
+    @Override
     public int updateBbsDetail(BbsDetail bbsDetail) {
         return bbsDetailDao.updateBbsDetail(bbsDetail);
     }
@@ -29,5 +34,20 @@ public class BbsDetailServiceImpl implements BbsDetailService {
     @Override
     public int addBbsDetail(BbsDetail bbsDetail) {
         return bbsDetailDao.addBbsDetail(bbsDetail);
+    }
+
+    @Override
+    public BbsDetail queryAddTitle(String title) {
+        return bbsDetailDao.queryAddTitle(title);
+    }
+
+    @Override
+    public void addCount(BbsDetail bbsDetail) {
+        bbsDetailDao.addCount(bbsDetail);
+    }
+
+    @Override
+    public int delBbs(Integer id) {
+        return bbsDetailDao.delBbs(id);
     }
 }

@@ -14,6 +14,12 @@
         order by a.id desc
     </select>
 
+    <select id="querySortByBbsId" resultType="com.kgc.bbs.beans.BbsDetail">
+        select id,sortId,title,detail,author,createDate,replyCount
+        from bbs_detail
+        where id = #{bbsId}
+    </select>
+
     <update id="updateBbsDetail" parameterType="com.kgc.bbs.beans.BbsDetail">
         update bbs_detail
         set sortId=#{sortId},title=#{title},detail=#{detail},author=#{author},createDate=now()
@@ -25,5 +31,23 @@
         values (#{sortId},#{title},#{detail},#{author},now());
     </insert>
 
+    <select id="queryAddTitle" resultType="com.kgc.bbs.beans.BbsDetail">
+        select id,sortId,title,detail,author,createDate,replyCount
+        from bbs_detail
+        where title=#{title}
+        order by id desc
+    </select>
+
+    <update id="addCount" parameterType="com.kgc.bbs.beans.BbsDetail">
+        update bbs_detail
+        set replyCount=replyCount+1
+        where id=#{id}
+    </update>
+
+    <delete id="delBbs" parameterType="int">
+        delete from bbs_detail
+        where
+        id = #{id}
+    </delete>
 
 </mapper>

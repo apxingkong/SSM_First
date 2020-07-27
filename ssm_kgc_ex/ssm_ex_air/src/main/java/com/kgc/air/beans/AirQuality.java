@@ -16,6 +16,7 @@ public class AirQuality {
     private Integer districtId;
     private String districtName;
     private Date monitorTime;
+    private String moniTime;
     private Integer pm10;
     private Integer pm25;
     private String monitoringStation;

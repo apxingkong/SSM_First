@@ -27,9 +27,8 @@
   <modules>
     <module>ssm_book</module>
     <module>ssm_ex_air</module>
-      <module>ssm_ex_bbs</module>
-    <module>ssm_ex_bbs</module>
     <module>ssm_sj_bbs</module>
+      <module>ssm_newBook</module>
   </modules>
   <groupId>com.kgc</groupId>
   <artifactId>ssm_kgc_ex</artifactId>

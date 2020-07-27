@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>添加检测信息</title>
-    <link rel="shortcut icon" href="https://pics.images.ac.cn/image/5f1008907e854.html" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://i.postimg.cc/28ByBG6h/logo1ico.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" />
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
                 <label for="monDate">检测日期：</label>
-                <input type="text" id="monDate" name="monitorTime1" class="form-control" placeholder="请输入检测日期" required onBlur="checkDate();"/>
+                <input type="date" id="monDate" name="monitorTime1" class="form-control" placeholder="请输入检测日期" required/>
             </div>
             <div class="form-group">
                 <label for="pm10">PM10值：</label>

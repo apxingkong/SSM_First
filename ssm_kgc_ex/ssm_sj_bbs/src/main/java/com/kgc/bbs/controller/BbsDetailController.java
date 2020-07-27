@@ -74,4 +74,41 @@ public class BbsDetailController {
         }
         return false;
     }
+
+    @ResponseBody
+    @RequestMapping("/addTitle")
+    public boolean addTitle(HttpServletRequest request){
+        BbsDetail bbsDetail = bbsDetailService.queryAddTitle(request.getParameter("title"));
+        if (bbsDetail == null){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 跳转到查看页面
+     * @param request
+     * @param map
+     * @return
+     */
+    @RequestMapping("/toShowBbs")
+    public String toShowBbs(HttpServletRequest request,Map<String,Object> map){
+        //传 bbsDetail
+        Integer bbsId = Integer.valueOf(request.getParameter("id"));
+        List<BbsDetail> bbsDetails = bbsDetailService.querySortByBbsId(bbsId);
+        BbsDetail bbsDetail = bbsDetails.get(0);
+        map.put("bbsDetail",bbsDetail);
+        //传 区域
+        BbsSort bbsSort = bbsSortService.querySortById(bbsDetail.getSortId());
+        map.put("bbsSorts",bbsSort);
+        //浏览次数+1
+        bbsDetailService.addCount(bbsDetail);
+        return "BbsShow";
+    }
+    @RequestMapping("/delBbs")
+    public String delBbs(HttpServletRequest request){
+        Integer bbsId = Integer.valueOf(request.getParameter("id"));
+        bbsDetailService.delBbs(bbsId);
+        return "redirect:/bbsList";
+    }
 }
